@@ -1,3 +1,5 @@
+package com.example.chatbotbackend.model;
+
 import opennlp.tools.cmdline.tokenizer.TokenizerMETool;
 
 import java.util.HashMap;

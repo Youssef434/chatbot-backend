@@ -1,7 +1,16 @@
+package com.example.chatbotbackend.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Document
 public class Conversation {
+
+  @Id
+  private int id;
 
   private static final class QA {
     private final String question;

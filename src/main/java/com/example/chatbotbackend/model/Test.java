@@ -1,3 +1,5 @@
+package com.example.chatbotbackend.model;
+
 import opennlp.tools.langdetect.Language;
 import opennlp.tools.langdetect.LanguageDetector;
 import opennlp.tools.langdetect.LanguageDetectorME;
@@ -10,7 +12,6 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Arrays;
 
 public class Test {

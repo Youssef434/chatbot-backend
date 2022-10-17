@@ -1,2 +1,24 @@
-package com.example.chatbotbackend.controller;public class MainController {
+package com.example.chatbotbackend.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MainController {
+
+  @GetMapping("/")
+  public String helloResponse() {
+    return null;
+  }
+
+  @GetMapping("/{lang}")
+  public void chooseLanguage(@PathVariable String lang) {
+
+  }
+
+  @GetMapping("/{question}")
+  public String ask(@PathVariable String question) {
+    return null;
+  }
 }

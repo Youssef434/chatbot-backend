@@ -1,4 +1,6 @@
-import utils.Formatters;
+package com.example.chatbotbackend.model;
+
+import com.example.chatbotbackend.model.utils.Formatters;
 
 import java.util.HashMap;
 import java.util.Map;
