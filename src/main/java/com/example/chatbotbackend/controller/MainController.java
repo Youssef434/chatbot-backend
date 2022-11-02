@@ -1,5 +1,6 @@
 package com.example.chatbotbackend.controller;
 
+import com.example.chatbotbackend.model.CustomResponse;
 import com.example.chatbotbackend.opennlpServicesFiles.FilePaths;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-  @GetMapping("/")
-  public String helloResponse() {
-    return null;
+  @GetMapping("/chat")
+  public CustomResponse helloResponse(@PathVariable String question) {
+    return new CustomResponse("Hello, World");
   }
 
   @GetMapping("/{lang}")
