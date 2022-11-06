@@ -3,6 +3,7 @@ package com.example.chatbotbackend.service.nlp;
 import opennlp.tools.langdetect.LanguageDetector;
 import opennlp.tools.langdetect.LanguageDetectorME;
 import opennlp.tools.langdetect.LanguageDetectorModel;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANG_NAMES;
 import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANGUAGE_DETECTOR;
 
+@Component
 public class LanguageServiceImpl implements LanguageService {
   Map<String, String> langNames;
 
@@ -46,9 +48,4 @@ public class LanguageServiceImpl implements LanguageService {
       }
     }
   }
-
-//  public static void main(String[] args) throws IOException {
-//    LanguageService languageService = new LanguageServiceImpl();
-//    System.out.println(languageService.getLanguageFullName("fra"));
-//  }
 }

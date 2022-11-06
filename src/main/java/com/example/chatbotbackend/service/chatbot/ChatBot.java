@@ -41,13 +41,13 @@ public class ChatBot implements ChatBotOps {
       while (true) {
         String question = Formatters.replaceSpaces(scanner.next());
         if (question.equals("exit")) {
-          conversation.persist();
+//          conversation.persist();
           leaveTheConversation();
           return;
         }
 
         String response = respond(question);
-        conversation.logQA(question, response);
+//        conversation.logQA(question, response);
         System.out.println(response);
       }
     }

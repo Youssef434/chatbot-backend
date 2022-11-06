@@ -28,6 +28,23 @@ public class ChatbotBackendApplication {
 
   @Bean
   CommandLineRunner runner() {
-    return args -> System.out.println(questionsAnswers);
+    return args -> {
+      List<QA> qas = List.of(
+          new QA("unknown", Map.of(
+           "en", "Sorry, I didn't understand your question",
+           "fr", "Pardon, j'ai pas compris ta question"
+          )),
+          new QA("greeting", Map.of(
+              "en", "Hello, how can I help you?",
+              "fr", "Salut, comment je peux vous aider ?"
+          )),
+          new QA("services", Map.of(
+              "en", "pédiatrie, dermatologie, diabétique, neurologue",
+              "fr", "pediatric, dermatology, diabetic, neurologist"
+          ))
+      );
+
+      qaRepository.saveAll(qas);
+    };
   }
 }

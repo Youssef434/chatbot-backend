@@ -8,8 +8,6 @@ public class FilePaths {
   public static final String LANGUAGE_TOKENIZER = PATH_FROM_ROOT + lang + "-token.bin";
   public static final String LANG_NAMES = PATH_FROM_ROOT + "lang_names.txt";
   public static final String POS_PATH = PATH_FROM_ROOT + "lang_names.txt";
-
-
   public static void changeLanguage(String newLang) {
     lang = newLang;
   }
