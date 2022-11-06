@@ -19,20 +19,12 @@ public class MainController {
 
   @GetMapping(value = "/chat")
   public Map<String, Object> chatResponse(@RequestParam String question) throws IOException {
+    FilePaths.changeLanguage(languageService.detectLanguage(question));
+
     return Map.of(
         "response", "Your Question is : " + question,
         "language",  languageService.detectLanguage(question),
         "timestamp", LocalDateTime.now()
     );
   }
-
-  @GetMapping("/{lang}")
-  public void chooseLanguage(@PathVariable String lang) {
-    FilePaths.changeLanguage(lang);
-  }
-
-//  @GetMapping("/{question}")
-//  public String ask(@PathVariable String question) {
-//    return null;
-//  }
 }

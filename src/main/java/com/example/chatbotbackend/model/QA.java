@@ -19,6 +19,14 @@ public class QA {
     this.answer = answer;
   }
 
+  public String getQuestion() {
+    return question;
+  }
+
+  public String getAnswer(String lang) {
+    return answer.get(lang);
+  }
+
   @Override
   public String toString() {
     return new StringJoiner(", ", QA.class.getSimpleName() + "[", "]")
