@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 
 public class Model {
@@ -40,12 +42,24 @@ public class Model {
     public String getQuestion() {
       return question;
     }
+
+    public String getAnswer() {
+      return answer;
+    }
+
+    @Override
+    public String toString() {
+      return new StringJoiner(", ", QAEntity.class.getSimpleName() + "[", "]")
+          .add("question='" + question + "'")
+          .add("answer='" + answer + "'")
+          .toString();
+    }
   }
 
   public List<QAEntity> loadQuestions() {
     return qaRepository.findAll()
         .stream()
-        .map(qa -> new Model.QAEntity(qa.getQuestion(), qa.getAnswer(FilePaths.lang)))
+        .map(qa -> new Model.QAEntity(qa.getQuestion(), qa.getAnswer(FilePaths.lang.substring(0, 2))))
         .toList();
   }
 
@@ -74,6 +88,7 @@ public class Model {
   public String detectCategory(DoccatModel model, String[] tokens) {
     DocumentCategorizerME documentCategorizerME = new DocumentCategorizerME(model);
     double[] outcomes = documentCategorizerME.categorize(tokens);
+    System.out.println(Arrays.toString(outcomes));
     return documentCategorizerME.getBestCategory(outcomes);
   }
 }

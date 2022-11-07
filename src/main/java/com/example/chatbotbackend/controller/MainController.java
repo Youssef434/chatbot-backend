@@ -31,7 +31,7 @@ public class MainController {
 
   @GetMapping(value = "/chat")
   public Map<String, Object> chatResponse(@RequestParam String question) throws IOException {
-    FilePaths.changeLanguage(languageService.detectLanguage(question));
+    FilePaths.changeLanguage(languageService.detectLanguage(question).equals("fra") ? "fra" : "eng");
     String[] sentences = theModel.decomposeToSentences(question);
 
     String answer = Arrays.stream(sentences)
@@ -48,16 +48,19 @@ public class MainController {
   private static String sentenceMapper(String sentence) {
     try {
       var questionsAnswers = theModel.loadQuestions();
+      System.out.println(questionsAnswers);
       DoccatModel doccatModel = theModel.trainModel();
       String[] tokens = theModel.decomposeToWords(sentence);
+      System.out.println(Arrays.toString(tokens));
       String category = theModel.detectCategory(doccatModel, tokens);
+      System.out.println(category);
 
       return questionsAnswers
           .stream()
           .filter(qa -> qa.getQuestion().equals(category))
           .findFirst()
           .orElseThrow()
-          .getQuestion();
+          .getAnswer();
 
     } catch (IOException e) {
       throw new RuntimeException(e);
