@@ -1,6 +1,5 @@
 package com.example.chatbotbackend.service.nlp.model;
 
-import com.example.chatbotbackend.model.QA;
 import com.example.chatbotbackend.opennlpServicesFiles.FilePaths;
 import com.example.chatbotbackend.repository.QARepository;
 import com.example.chatbotbackend.service.nlp.POSService;
@@ -8,27 +7,28 @@ import com.example.chatbotbackend.service.nlp.TokenizeService;
 import opennlp.tools.doccat.*;
 import opennlp.tools.util.*;
 import opennlp.tools.util.model.ModelUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.print.Doc;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class Model {
-  private final QARepository qaRepository;
-  private final TokenizeService tokenizeService;
+  private QARepository qaRepository;
 
-  private final POSService posService;
+  private TokenizeService tokenizeService;
 
-  public Model(QARepository qaRepository, TokenizeService tokenizeService, POSService posService) {
+//  private final POSService posService;
+
+
+  public Model(QARepository qaRepository, TokenizeService tokenizeService) {
     this.qaRepository = qaRepository;
     this.tokenizeService = tokenizeService;
-    this.posService = posService;
   }
 
-  private static final class QAEntity {
+  public static final class QAEntity {
     private final String question;
     private final String answer;
 
@@ -36,12 +36,16 @@ public class Model {
       this.question = question;
       this.answer = answer;
     }
+
+    public String getQuestion() {
+      return question;
+    }
   }
 
-  public List<QAEntity> loadQuestions(String langName) {
+  public List<QAEntity> loadQuestions() {
     return qaRepository.findAll()
         .stream()
-        .map(qa -> new Model.QAEntity(qa.getQuestion(), qa.getAnswer(langName)))
+        .map(qa -> new Model.QAEntity(qa.getQuestion(), qa.getAnswer(FilePaths.lang)))
         .toList();
   }
 
@@ -58,7 +62,7 @@ public class Model {
 
     try (
         ObjectStream<String> lineStream = new PlainTextByLineStream(inputStreamFactory, StandardCharsets.UTF_8);
-        ObjectStream<DocumentSample> sampleStream = new DocumentSampleStream(lineStream);
+        ObjectStream<DocumentSample> sampleStream = new DocumentSampleStream(lineStream)
     ) {
       DoccatFactory doccatFactory = new DoccatFactory(new FeatureGenerator[] { new BagOfWordsFeatureGenerator() });
       TrainingParameters trainingParameters = ModelUtil.createDefaultTrainingParameters();

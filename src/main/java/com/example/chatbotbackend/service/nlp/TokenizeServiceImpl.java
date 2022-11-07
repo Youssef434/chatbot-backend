@@ -6,11 +6,13 @@ import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
+import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Service
 public class TokenizeServiceImpl implements TokenizeService {
   @Override
   public String[] breakSentence(String sentence) throws IOException {
@@ -31,12 +33,4 @@ public class TokenizeServiceImpl implements TokenizeService {
       return tokenizer.tokenize(sentence);
     }
   }
-
-//  public static void main(String[] args) throws IOException {
-//    TokenizeService tokenizeService = new TokenizeServiceImpl();
-//    System.out.println(Arrays.toString(tokenizeService.tokenize("Hello, World!")));
-//    System.out.println(Arrays.toString(tokenizeService.breakSentence("Hello, World!")));
-//  }
-
-
 }
