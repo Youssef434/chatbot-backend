@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1")
+@CrossOrigin("*")
 public class MainController {
   private final LanguageService languageService;
   private TokenizeService tokenizeService;
@@ -32,6 +33,9 @@ public class MainController {
   @GetMapping(value = "/chat")
   public Map<String, Object> chatResponse(@RequestParam String question) throws IOException {
     FilePaths.changeLanguage(languageService.detectLanguage(question).equals("fra") ? "fra" : "eng");
+
+    System.out.println(languageService.detectLanguage(question));
+
     String[] sentences = theModel.decomposeToSentences(question);
 
     String answer = Arrays.stream(sentences)
@@ -39,7 +43,7 @@ public class MainController {
         .collect(Collectors.joining(", "));
 
     return Map.of(
-        "response", answer,
+        "response", answer.length() == 0 ? "Sorry, I didn't understand your question.": answer,
         "language",  FilePaths.lang,
         "timestamp", LocalDateTime.now()
     );
@@ -59,7 +63,7 @@ public class MainController {
           .stream()
           .filter(qa -> qa.getQuestion().equals(category))
           .findFirst()
-          .orElseThrow()
+          .orElse(new Model.QAEntity("", ""))
           .getAnswer();
 
     } catch (IOException e) {

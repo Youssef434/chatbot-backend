@@ -29,6 +29,8 @@ public class ChatbotBackendApplication {
   @Bean
   CommandLineRunner runner() {
     return args -> {
+//      qaRepository.deleteAll();
+
 //      List<QA> qas = List.of(
 //          new QA("unknown", Map.of(
 //           "en", "Sorry, I didn't understand your question",
@@ -39,12 +41,20 @@ public class ChatbotBackendApplication {
 //              "fr", "Salut, comment je peux vous aider ?"
 //          )),
 //          new QA("services", Map.of(
-//              "en", "pédiatrie, dermatologie, diabétique, neurologue",
-//              "fr", "pediatric, dermatology, diabetic, neurologist"
+//              "fr", "pédiatrie, dermatologie, diabétique, neurologue",
+//              "en", "pediatric, dermatology, diabetic, neurologist"
 //          ))
 //      );
-//
+
 //      qaRepository.saveAll(qas);
+
+//      qaRepository.save(
+//          new QA("costs", Map.of(
+//              "en", "one apointment costs 200 dh",
+//              "fr", "une séance vaut 200 dh"
+//          ))
+//      );
+
     };
   }
 }

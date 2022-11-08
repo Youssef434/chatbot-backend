@@ -1,0 +1,6 @@
+unknown     aaaaaaaaaa
+greeting     salut . salut cv ? . cv ? . bonjour . bonjour tout le monde
+services     quels sont les services offert . quels sont les services . quels sont les services disponibles . service . services . specialité
+department    what are the departments ? . department ? . how many department does exist ?
+registration       what are the registration procedures ? . registration ?
+costs        quels sont les frais ? . frais ?

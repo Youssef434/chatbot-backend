@@ -8,9 +8,20 @@ public class FilePaths {
   public static final String LANGUAGE_TOKENIZER = PATH_FROM_ROOT + lang + "-token.bin";
   public static final String LANG_NAMES = PATH_FROM_ROOT + "lang_names.txt";
   public static final String POS_PATH = PATH_FROM_ROOT + "lang_names.txt";
-  public static final String CATEGORIES_PATH = PATH_FROM_ROOT + lang + "-categories.txt";
+  public static String getCategoriesPath() {
+    return PATH_FROM_ROOT + lang + "-categories.txt";
+  }
+
+  public static String getLanguageTokenizer() {
+    return PATH_FROM_ROOT + lang + "-token.bin";
+  }
+
+  public static String getLanguageSent() {
+    return PATH_FROM_ROOT + lang + "-sent.bin";
+  }
 
   public static void changeLanguage(String newLang) {
     lang = newLang;
+    System.out.println("language : " + lang);
   }
 }

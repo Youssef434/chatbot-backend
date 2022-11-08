@@ -1,7 +1,6 @@
 package com.example.chatbotbackend.service.nlp;
 
-import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANGUAGE_TOKENIZER;
-import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANGUAGE_SENT;
+import com.example.chatbotbackend.opennlpServicesFiles.FilePaths;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.TokenizerME;
@@ -16,7 +15,7 @@ import java.io.InputStream;
 public class TokenizeServiceImpl implements TokenizeService {
   @Override
   public String[] breakSentence(String sentence) throws IOException {
-    try (InputStream inputStream = new FileInputStream(LANGUAGE_SENT)) {
+    try (InputStream inputStream = new FileInputStream(FilePaths.getLanguageSent())) {
       SentenceModel model = new SentenceModel(inputStream);
       SentenceDetectorME sentenceDetector = new SentenceDetectorME(model);
 
@@ -26,7 +25,7 @@ public class TokenizeServiceImpl implements TokenizeService {
 
   @Override
   public String[] tokenize(String sentence) throws IOException {
-    try (InputStream inputStream = new FileInputStream(LANGUAGE_TOKENIZER)) {
+    try (InputStream inputStream = new FileInputStream(FilePaths.getLanguageTokenizer())) {
       TokenizerModel model = new TokenizerModel(inputStream);
       TokenizerME tokenizer = new TokenizerME(model);
 

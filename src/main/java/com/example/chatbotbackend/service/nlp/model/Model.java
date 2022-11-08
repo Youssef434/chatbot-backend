@@ -34,7 +34,7 @@ public class Model {
     private final String question;
     private final String answer;
 
-    QAEntity(String question, String answer) {
+    public QAEntity(String question, String answer) {
       this.question = question;
       this.answer = answer;
     }
@@ -72,7 +72,7 @@ public class Model {
   }
 
   public DoccatModel trainModel() throws IOException {
-    InputStreamFactory inputStreamFactory = new MarkableFileInputStreamFactory(new File(FilePaths.CATEGORIES_PATH));
+    InputStreamFactory inputStreamFactory = new MarkableFileInputStreamFactory(new File(FilePaths.getCategoriesPath()));
 
     try (
         ObjectStream<String> lineStream = new PlainTextByLineStream(inputStreamFactory, StandardCharsets.UTF_8);
