@@ -8,6 +8,7 @@ import opennlp.tools.doccat.*;
 import opennlp.tools.util.*;
 import opennlp.tools.util.model.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +22,6 @@ public class Model {
   private QARepository qaRepository;
 
   private TokenizeService tokenizeService;
-
-//  private final POSService posService;
 
 
   public Model(QARepository qaRepository, TokenizeService tokenizeService) {
