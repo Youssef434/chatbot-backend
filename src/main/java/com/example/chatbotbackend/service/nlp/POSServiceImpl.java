@@ -4,7 +4,6 @@ import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -17,7 +16,7 @@ public class POSServiceImpl implements POSService {
       POSTaggerME categorize = new POSTaggerME(new POSModel(model));
       return categorize.tag(tokens);
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage());
     }
   }
 }

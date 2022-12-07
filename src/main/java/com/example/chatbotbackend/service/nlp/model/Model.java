@@ -2,13 +2,10 @@ package com.example.chatbotbackend.service.nlp.model;
 
 import com.example.chatbotbackend.opennlpServicesFiles.FilePaths;
 import com.example.chatbotbackend.repository.QARepository;
-import com.example.chatbotbackend.service.nlp.POSService;
 import com.example.chatbotbackend.service.nlp.TokenizeService;
 import opennlp.tools.doccat.*;
 import opennlp.tools.util.*;
 import opennlp.tools.util.model.ModelUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,10 +15,10 @@ import java.util.List;
 import java.util.StringJoiner;
 
 
-public class Model {
-  private QARepository qaRepository;
+public final class Model {
+  private final QARepository qaRepository;
 
-  private TokenizeService tokenizeService;
+  private final TokenizeService tokenizeService;
 
 
   public Model(QARepository qaRepository, TokenizeService tokenizeService) {

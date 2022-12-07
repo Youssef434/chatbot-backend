@@ -12,7 +12,7 @@ import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANG_NAM
 import static com.example.chatbotbackend.opennlpServicesFiles.FilePaths.LANGUAGE_DETECTOR;
 
 @Component
-public class LanguageServiceImpl implements LanguageService {
+public final class LanguageServiceImpl implements LanguageService {
   Map<String, String> langNames;
 
   @Override

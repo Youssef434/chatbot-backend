@@ -1,6 +1,6 @@
 package com.example.chatbotbackend.opennlpServicesFiles;
 
-public class FilePaths {
+public final class FilePaths {
   public static String lang = "eng";
   private static final String PATH_FROM_ROOT = "src/main/java/com/example/chatbotbackend/opennlpServicesFiles/";
   public static final String LANGUAGE_DETECTOR = PATH_FROM_ROOT + "langdetect-183.bin";
@@ -24,4 +24,6 @@ public class FilePaths {
     lang = newLang;
     System.out.println("language : " + lang);
   }
+
+  private FilePaths() {}
 }

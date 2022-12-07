@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @CrossOrigin("*")
 public class MainController {
   private final LanguageService languageService;
-  private TokenizeService tokenizeService;
-  private QARepository qaRepository;
+  private final TokenizeService tokenizeService;
+  private final QARepository qaRepository;
   private static Model theModel;
 
   public MainController(LanguageService languageService, TokenizeService tokenizeService, QARepository qaRepository) {
@@ -33,9 +33,6 @@ public class MainController {
   @GetMapping(value = "/chat")
   public Map<String, Object> chatResponse(@RequestParam String question) throws IOException {
     FilePaths.changeLanguage(languageService.detectLanguage(question).equals("fra") ? "fra" : "eng");
-
-    System.out.println(languageService.detectLanguage(question));
-
     String[] sentences = theModel.decomposeToSentences(question);
 
     String answer = Arrays.stream(sentences)
@@ -52,12 +49,9 @@ public class MainController {
   private static String sentenceMapper(String sentence) {
     try {
       var questionsAnswers = theModel.loadQuestions();
-      System.out.println(questionsAnswers);
       DoccatModel doccatModel = theModel.trainModel();
       String[] tokens = theModel.decomposeToWords(sentence);
-      System.out.println(Arrays.toString(tokens));
       String category = theModel.detectCategory(doccatModel, tokens);
-      System.out.println(category);
 
       return questionsAnswers
           .stream()
@@ -67,7 +61,7 @@ public class MainController {
           .getAnswer();
 
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage());
     }
   }
 }
